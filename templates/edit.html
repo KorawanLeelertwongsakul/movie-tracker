@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>แก้ไขหนัง</title>
+
+<meta charset="UTF-8">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+<h1>✏ แก้ไขหนัง</h1>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>ชื่อหนัง</label>
+
+<input type="text" name="title" class="form-control"
+value="{{ movie.title }}" required>
+
+</div>
+
+
+<div class="mb-3">
+
+<label>ประเภท</label>
+
+<input type="text" name="genre" class="form-control"
+value="{{ movie.genre }}" required>
+
+</div>
+
+
+<div class="mb-3">
+
+<label>คะแนน</label>
+
+<input type="text" name="rating" class="form-control"
+value="{{ movie.rating }}" required>
+
+</div>
+
+
+<button class="btn btn-warning">
+บันทึก
+</button>
+
+<a href="/movies" class="btn btn-secondary">
+ยกเลิก
+</a>
+
+
+</form>
+
+</div>
+
+</body>
+
+</html>
