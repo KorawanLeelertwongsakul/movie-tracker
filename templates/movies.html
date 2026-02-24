@@ -88,6 +88,12 @@ img {
 
 }
 
+.badge{
+
+font-size:14px;
+
+}
+
 </style>
 
 </head>
@@ -166,6 +172,8 @@ class="form-control search-box">
 
 <th>Rating</th>
 
+<th>Status</th>
+
 <th>Edit</th>
 
 <th>Delete</th>
@@ -225,6 +233,40 @@ No Image
 <td>
 
 ⭐ {{ movie.rating }}/10
+
+</td>
+
+
+
+<!-- STATUS FIXED -->
+
+<td>
+
+{% if movie.rating|int >= 8 %}
+
+<span class="badge bg-success">
+
+Excellent
+
+</span>
+
+{% elif movie.rating|int >= 5 %}
+
+<span class="badge bg-warning text-dark">
+
+Good
+
+</span>
+
+{% else %}
+
+<span class="badge bg-danger">
+
+Bad
+
+</span>
+
+{% endif %}
 
 </td>
 
