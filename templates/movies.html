@@ -1,203 +1,299 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
+
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <title>Movie List</title>
+<title>Movie List</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(to right, #141e30, #243b55);
+
+    color: white;
+
+}
+
+
+.container-box {
+
+    background: rgba(255,255,255,0.05);
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+}
+
+
+.table {
+
+    color: white;
+
+}
+
+
+.table thead {
+
+    background-color: #0d6efd;
+
+}
+
+
+.table tbody tr:hover {
+
+    background-color: rgba(255,255,255,0.1);
+
+    transition: 0.3s;
+
+}
+
+
+.btn {
+
+    border-radius: 10px;
+
+}
+
+
+.search-box {
+
+    border-radius: 10px;
+
+    border: none;
+
+    padding: 10px;
+
+}
+
+
+img {
+
+    border-radius: 10px;
+
+    box-shadow: 0 0 10px black;
+
+}
+
+</style>
 
 </head>
 
 
-<body class="container mt-5">
 
+<body>
 
-    <h1>🎬 Movie List</h1>
 
 
-    <!-- Buttons -->
+<div class="container mt-5">
 
-    <a href="/add" class="btn btn-primary mb-3">
 
-        ➕ Add Movie
+<div class="container-box">
 
-    </a>
 
+<h1 class="mb-4">
 
-    <a href="/" class="btn btn-secondary mb-3">
+🎬 Movie List
 
-        🏠 Home
+</h1>
 
-    </a>
 
 
+<!-- Buttons -->
 
-    <!-- Search -->
+<a href="/add" class="btn btn-primary">
 
-    <form method="GET" action="/movies" class="mb-3">
+➕ Add Movie
 
-        <input type="text"
-               name="search"
-               placeholder="Search movie..."
-               class="form-control">
+</a>
 
-    </form>
 
+<a href="/" class="btn btn-secondary">
 
+🏠 Home
 
-    <!-- Table -->
+</a>
 
-    <table class="table table-bordered table-striped">
 
 
+<!-- Search -->
 
-        <thead class="table-dark">
+<form method="GET" action="/movies" class="mt-3 mb-3">
 
-            <tr>
 
-                <th>Image</th>
+<input type="text"
 
-                <th>Title</th>
+name="search"
 
-                <th>Genre</th>
+placeholder="🔍 Search movie..."
 
-                <th>Rating</th>
+class="form-control search-box">
 
-                <th>Edit</th>
 
-                <th>Delete</th>
+</form>
 
-                <th>Detail</th>
 
-            </tr>
 
-        </thead>
 
+<!-- Table -->
 
+<table class="table table-bordered text-center align-middle">
 
-        <tbody>
 
 
+<thead>
 
-            {% for movie in movies %}
+<tr>
 
-            <tr>
+<th>Image</th>
 
+<th>Title</th>
 
-                <!-- Image -->
+<th>Genre</th>
 
-                <td>
+<th>Rating</th>
 
-                    {% if movie.image %}
+<th>Edit</th>
 
-                    <img src="/static/uploads/{{ movie.image }}"
-                         width="80"
-                         class="rounded">
+<th>Delete</th>
 
-                    {% else %}
+<th>Detail</th>
 
-                    No Image
+</tr>
 
-                    {% endif %}
+</thead>
 
-                </td>
 
 
+<tbody>
 
-                <!-- Title -->
 
-                <td>
 
-                    {{ movie.title }}
+{% for movie in movies %}
 
-                </td>
+<tr>
 
 
 
-                <!-- Genre -->
+<td>
 
-                <td>
+{% if movie.image %}
 
-                    {{ movie.genre }}
+<img src="/static/uploads/{{ movie.image }}"
 
-                </td>
+width="80">
 
+{% else %}
 
+No Image
 
-                <!-- Rating -->
+{% endif %}
 
-                <td>
+</td>
 
-                    ⭐ {{ movie.rating }}/10
 
-                </td>
 
+<td>
 
+{{ movie.title }}
 
+</td>
 
-                <!-- Edit -->
 
-                <td>
 
-                    <a href="/edit/{{ movie.id }}"
-                       class="btn btn-warning btn-sm">
+<td>
 
-                        Edit
+{{ movie.genre }}
 
-                    </a>
+</td>
 
-                </td>
 
 
+<td>
 
+⭐ {{ movie.rating }}/10
 
-                <!-- Delete -->
+</td>
 
-                <td>
 
-                    <a href="/delete/{{ movie.id }}"
-                       class="btn btn-danger btn-sm"
-                       onclick="return confirm('Are you sure?')">
 
-                        Delete
+<td>
 
-                    </a>
+<a href="/edit/{{ movie.id }}"
 
-                </td>
+class="btn btn-warning btn-sm">
 
+Edit
 
+</a>
 
+</td>
 
-                <!-- Detail -->
 
-                <td>
 
-                    <a href="/movie/{{ movie.id }}"
-                       class="btn btn-info btn-sm">
+<td>
 
-                        Detail
+<a href="/delete/{{ movie.id }}"
 
-                    </a>
+class="btn btn-danger btn-sm"
 
-                </td>
+onclick="return confirm('Are you sure?')">
 
+Delete
 
-            </tr>
+</a>
 
-            {% endfor %}
+</td>
 
 
 
-        </tbody>
+<td>
 
+<a href="/movie/{{ movie.id }}"
 
+class="btn btn-info btn-sm">
 
-    </table>
+Detail
+
+</a>
+
+</td>
+
+
+
+</tr>
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+
+</div>
 
 
 
 </body>
+
 </html>
