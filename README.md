@@ -32,3 +32,37 @@ Movie Tracker คือเว็บแอปสำหรับบันทึก
 - CSS
 - Bootstrap
 - SQLite
+
+
+## ⚙️ Installation
+
+ขั้นตอนการติดตั้ง
+
+1. Clone project
+
+git clone https://github.com/KorawanLeelertwongsakul/movie-tracker.git
+
+
+2. เข้าโฟลเดอร์
+
+cd movie-tracker
+
+
+3. สร้าง virtual environment
+
+python -m venv venv
+
+
+4. เปิดใช้งาน
+
+venv\Scripts\activate
+
+
+5. ติดตั้ง package
+
+pip install flask
+
+
+6. Run
+
+python app.py
