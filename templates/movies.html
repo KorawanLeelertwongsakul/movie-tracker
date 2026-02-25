@@ -53,11 +53,24 @@ body {
 }
 
 
+/* Hover effect ใหม่ */
+
+.table tbody tr {
+
+    transition: all 0.3s ease;
+
+}
+
+
 .table tbody tr:hover {
 
     background-color: rgba(255,255,255,0.1);
 
-    transition: 0.3s;
+    transform: scale(1.02);
+
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+
+    cursor: pointer;
 
 }
 
@@ -86,13 +99,26 @@ img {
 
     box-shadow: 0 0 10px black;
 
+    transition: 0.3s;
+
 }
+
+
+/* hover image */
+
+img:hover {
+
+    transform: scale(1.1);
+
+}
+
 
 .badge{
 
 font-size:14px;
 
 }
+
 
 </style>
 
@@ -116,6 +142,7 @@ font-size:14px;
 
 </h1>
 
+
 <h5 class="mb-3">
 
 Total Movies: 
@@ -127,6 +154,7 @@ Total Movies:
 </span>
 
 </h5>
+
 
 <!-- Buttons -->
 
@@ -247,8 +275,6 @@ No Image
 </td>
 
 
-
-<!-- STATUS FIXED -->
 
 <td>
 
