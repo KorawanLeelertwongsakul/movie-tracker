@@ -18,26 +18,19 @@
 body {
 
     font-family: 'Poppins', sans-serif;
-
     background: linear-gradient(to right, #141e30, #243b55);
-
     color: white;
 
 }
 
-
 .container-box {
 
     background: rgba(255,255,255,0.05);
-
     padding: 30px;
-
     border-radius: 15px;
-
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
 }
-
 
 .table {
 
@@ -45,22 +38,11 @@ body {
 
 }
 
-
 .table thead {
 
     background-color: #0d6efd;
 
 }
-
-
-/* Hover effect ใหม่ */
-
-.table tbody tr:hover {
-
-    background-color: rgba(255,255,255,0.08);
-
-}
-
 
 .btn {
 
@@ -68,71 +50,57 @@ body {
 
 }
 
-
 .search-box {
 
     border-radius: 10px;
-
     border: none;
-
     padding: 10px;
 
 }
 
-
 img {
 
     border-radius: 10px;
-
     box-shadow: 0 0 10px black;
 
-    transition: 0.3s;
-
 }
-
-
-/* hover image */
-
-img:hover {
-
-    transform: scale(1.1);
-
-}
-
 
 .badge{
 
-font-size:14px;
+    font-size:14px;
 
 }
 
+.no-movie{
+
+    text-align:center;
+    padding:50px;
+    font-size:22px;
+    color:#ccc;
+
+}
 
 </style>
 
 </head>
 
 
-
 <body>
 
 
-
 <div class="container mt-5">
-
 
 <div class="container-box">
 
 
 <h1 class="mb-4">
-
 🎬 Movie List
-
 </h1>
 
 
 <h5 class="mb-3">
 
-Total Movies: 
+Total Movies:
 
 <span class="badge bg-primary">
 
@@ -146,16 +114,11 @@ Total Movies:
 <!-- Buttons -->
 
 <a href="/add" class="btn btn-primary">
-
 ➕ Add Movie
-
 </a>
 
-
 <a href="/" class="btn btn-secondary">
-
 🏠 Home
-
 </a>
 
 
@@ -164,45 +127,33 @@ Total Movies:
 
 <form method="GET" action="/movies" class="mt-3 mb-3">
 
-
 <input type="text"
-
 name="search"
-
 placeholder="🔍 Search movie..."
-
 class="form-control search-box">
-
 
 </form>
 
 
 
+<!-- ✅ CHECK ถ้ามีหนัง -->
 
-<!-- Table -->
+{% if movies|length > 0 %}
+
 
 <table class="table table-bordered text-center align-middle">
-
-
 
 <thead>
 
 <tr>
 
 <th>Image</th>
-
 <th>Title</th>
-
 <th>Genre</th>
-
 <th>Rating</th>
-
 <th>Status</th>
-
 <th>Edit</th>
-
 <th>Delete</th>
-
 <th>Detail</th>
 
 </tr>
@@ -210,24 +161,17 @@ class="form-control search-box">
 </thead>
 
 
-
 <tbody>
-
-
 
 {% for movie in movies %}
 
 <tr>
 
-
-
 <td>
 
 {% if movie.image %}
 
-<img src="/static/uploads/{{ movie.image }}"
-
-width="80">
+<img src="/static/uploads/{{ movie.image }}" width="80">
 
 {% else %}
 
@@ -238,13 +182,11 @@ No Image
 </td>
 
 
-
 <td>
 
 {{ movie.title }}
 
 </td>
-
 
 
 <td>
@@ -254,7 +196,6 @@ No Image
 </td>
 
 
-
 <td>
 
 ⭐ {{ movie.rating }}/10
@@ -262,31 +203,24 @@ No Image
 </td>
 
 
-
 <td>
 
 {% if movie.rating|int >= 8 %}
 
 <span class="badge bg-success">
-
 Excellent
-
 </span>
 
 {% elif movie.rating|int >= 5 %}
 
 <span class="badge bg-warning text-dark">
-
 Good
-
 </span>
 
 {% else %}
 
 <span class="badge bg-danger">
-
 Bad
-
 </span>
 
 {% endif %}
@@ -294,69 +228,65 @@ Bad
 </td>
 
 
-
 <td>
 
 <a href="/edit/{{ movie.id }}"
-
 class="btn btn-warning btn-sm">
-
 Edit
-
 </a>
 
 </td>
-
 
 
 <td>
 
 <a href="/delete/{{ movie.id }}"
-
 class="btn btn-danger btn-sm"
-
 onclick="return confirm('Are you sure?')">
-
 Delete
-
 </a>
 
 </td>
-
 
 
 <td>
 
 <a href="/movie/{{ movie.id }}"
-
 class="btn btn-info btn-sm">
-
 Detail
-
 </a>
 
 </td>
-
 
 
 </tr>
 
 {% endfor %}
 
-
-
 </tbody>
-
-
 
 </table>
 
 
+{% else %}
+
+
+<!-- ✅ ถ้าไม่มีหนัง -->
+
+<div class="no-movie">
+
+🎬 No movies found
+
 </div>
 
 
+{% endif %}
+
+
+
 </div>
 
+</div>
 
 
 </body>
