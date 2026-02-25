@@ -64,3 +64,11 @@ pip install flask
 6. Run
 python app.py
 
+
+## 🌟 Highlight
+
+- ใช้งานง่าย
+- มีระบบค้นหา
+- มีการอัปโหลดรูปภาพ
+- แสดงสถานะหนัง
+- มี UI สวยงามด้วย Bootstrap
