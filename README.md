@@ -60,23 +60,3 @@ pip install flask
 
 6. Run
 python app.py
-
-
-## 📁 Project Structure
-
-movie-tracker
-│
-├── app.py
-├── database.db
-│
-├── templates
-│   ├── index.html
-│   ├── movies.html
-│   ├── add.html
-│   ├── edit.html
-│   └── detail.html
-│
-├── static
-│   └── uploads
-│
-└── README.md
