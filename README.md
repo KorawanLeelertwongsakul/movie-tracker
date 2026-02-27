@@ -34,7 +34,7 @@ Movie Tracker คือเว็บแอปสำหรับบันทึก
 
 ![Home](images/home.png)
 
-![Page](images/spage.png)
+![Page](images/page.png)
 
 
 ## 🛠️ Technology Used
