@@ -20,23 +20,25 @@
 
 
 <p>
-
 Genre: {{ movie.genre }}
-
 </p>
 
 
 <p>
-
 Rating: {{ movie.rating }}
+</p>
 
+
+<!-- ✅ เพิ่มส่วนรีวิว -->
+
+<p class="mt-3">
+<strong>Review:</strong><br>
+{{ movie.review if movie.review else "No review yet" }}
 </p>
 
 
 <a href="/movies" class="btn btn-secondary">
-
 Back
-
 </a>
 
 

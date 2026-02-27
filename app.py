@@ -17,6 +17,7 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+
 # Home
 @app.route("/")
 def home():
@@ -32,20 +33,18 @@ def movies():
     db = get_db()
 
     if search:
-
         movies = db.execute(
             "SELECT * FROM movies WHERE title LIKE ?",
             ('%' + search + '%',)
         ).fetchall()
-
     else:
-
         movies = db.execute(
             "SELECT * FROM movies"
         ).fetchall()
 
-    db.close()  
+    db.close()
     return render_template("movies.html", movies=movies)
+
 
 # ADD MOVIE 
 @app.route("/add", methods=["GET", "POST"])
@@ -56,15 +55,14 @@ def add():
         title = request.form["title"]
         genre = request.form["genre"]
         rating = request.form["rating"]
+        review = request.form.get("review", "")
 
         image = request.files["image"]
 
         filename = ""
 
         if image and image.filename != "":
-
             filename = secure_filename(image.filename)
-
             image.save(
                 os.path.join(
                     app.config['UPLOAD_FOLDER'],
@@ -75,8 +73,8 @@ def add():
         db = get_db()
 
         db.execute(
-            "INSERT INTO movies (title, genre, rating, image) VALUES (?, ?, ?, ?)",
-            (title, genre, rating, filename)
+            "INSERT INTO movies (title, genre, rating, image, review) VALUES (?, ?, ?, ?, ?)",
+            (title, genre, rating, filename, review)
         )
 
         db.commit()
@@ -85,6 +83,7 @@ def add():
         return redirect("/movies")
 
     return render_template("add.html")
+
 
 # DELETE MOVIE
 @app.route("/delete/<int:id>")
@@ -98,7 +97,7 @@ def delete_movie(id):
     )
 
     db.commit()
-    db.close() 
+    db.close()
 
     return redirect("/movies")
 
@@ -120,14 +119,15 @@ def edit(id):
         title = request.form["title"]
         genre = request.form["genre"]
         rating = request.form["rating"]
+        review = request.form.get("review", "")
 
         db.execute(
-            "UPDATE movies SET title=?, genre=?, rating=? WHERE id=?",
-            (title, genre, rating, id)
+            "UPDATE movies SET title=?, genre=?, rating=?, review=? WHERE id=?",
+            (title, genre, rating, review, id)
         )
 
         db.commit()
-        db.close() 
+        db.close()
 
         return redirect("/movies")
 
@@ -136,9 +136,10 @@ def edit(id):
         (id,)
     ).fetchone()
 
-    db.close() 
+    db.close()
 
     return render_template("edit.html", movie=movie)
+
 
 # Detail
 @app.route("/movie/<int:id>")
@@ -151,16 +152,18 @@ def movie_detail(id):
         (id,)
     ).fetchone()
 
-    db.close() 
+    db.close()
 
     return render_template(
         "movie_detail.html",
         movie=movie
     )
 
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
 
 # Stats
 @app.route("/stats")
@@ -180,7 +183,7 @@ def stats():
         "SELECT * FROM movies ORDER BY CAST(rating AS FLOAT) DESC LIMIT 1"
     ).fetchone()
 
-    db.close() 
+    db.close()
 
     return render_template(
         "stats.html",
@@ -188,6 +191,7 @@ def stats():
         avg=avg,
         max_movie=max_movie
     )
+
 
 @app.route("/top")
 def top_movies():
@@ -198,10 +202,14 @@ def top_movies():
         "SELECT * FROM movies ORDER BY CAST(rating AS FLOAT) DESC LIMIT 5"
     ).fetchall()
 
+    db.close()
+
     return render_template(
         "top.html",
         movies=movies
     )
+
+
 # Run
 if __name__ == "__main__":
     app.run(debug=True)
