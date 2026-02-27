@@ -32,13 +32,9 @@ Movie Tracker คือเว็บแอปสำหรับบันทึก
 
 ## 📸 Preview
 
-หน้าเว็บประกอบด้วย
+![Home](images/home.png)
 
-- หน้าแสดงรายการหนังทั้งหมด
-- หน้าเพิ่ม / แก้ไขข้อมูลหนัง
-- หน้าแสดงรายละเอียดหนัง (พร้อมรีวิว)
-![alt text](<Screenshot 2026-02-24 233531.png>)
-![alt text](<Screenshot 2026-02-24 233443-1.png>)
+![Page](images/spage.png)
 
 
 ## 🛠️ Technology Used
